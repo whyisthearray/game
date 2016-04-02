@@ -4,14 +4,14 @@ using System.Collections;
 public class CameraScript : MonoBehaviour {
 
 	public Vector2 Resolution = new Vector2 (16, 9);
-	public float unitsPerUnit = 1f;
-	public float pixelsPerUnit = 100f;
+	public static float unitsPerUnit = 1f;
+	public static float pixelsPerUnit = 100f;
 
 	public Camera camera;
 
 	private float scale = 1f;
 
-	public float MinimumCameraSize=0f;
+	public float MinimumCameraSize = 0f;
 	public float MaximumCameraSize = 0f;
 			
 	void Awake(){
@@ -20,8 +20,8 @@ public class CameraScript : MonoBehaviour {
 		this.camera = GetComponent<Camera> ();
 		if (camera.orthographic) {
 			this.scale = Screen.height / Resolution.y;
-			this.pixelsPerUnit *= this.scale;
-			camera.orthographicSize = (Screen.height / 2.0f) / this.pixelsPerUnit;
+			pixelsPerUnit *= this.scale;
+			camera.orthographicSize = (Screen.height / 2.0f) / pixelsPerUnit;
 			this.MinimumCameraSize = this.camera.orthographicSize / 2.0f;
 			this.MaximumCameraSize = this.camera.orthographicSize * 1.5f;
 		}
